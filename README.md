@@ -1,18 +1,49 @@
-# MiniHTTP Server
 
-MiniHTTP is a lightweight HTTP server built in Java using NIO (non-blocking I/O) that allows you to handle HTTP requests with ease. It's designed to be fast and efficient, making it suitable for small to medium-sized projects.
+# MiniWeb 🌐
 
-## Features
+MiniWeb is a minimalist web server implemented in Java, utilizing the Non-blocking I/O (NIO) and the Multi-Reactor pattern to efficiently handle network events in a scalable manner.
 
-- Non-blocking I/O using Java NIO
-- Multi-threaded architecture for handling multiple requests concurrently
-- Simple route handling using a Router and Dispatcher
-- Handler functions for easily managing HTTP requests
-- Extensible for custom functionality
+## Features ✨
+- **Non-blocking I/O (NIO)**: Efficient handling of network events with Java NIO.
+- **Multi-Reactor Pattern**: Enhanced scalability and performance by employing a multi-reactor pattern.
+- **Trie-based Routing**: Utilizes a trie for efficient routing and URL matching.
 
-## Getting Started
+## Usage 🚀
 
-1. Clone the repository:
+### 1. Define Your Handlers:
 
-   ```shell
-   git clone https://github.com/shantanu-verma-salpro/MiniHttp
+```java
+public static class BookController {
+    public static HttpResponse handleGetAll(HttpRequest req, PathParameters p) {
+        // Handle GET request for all books
+        String responseString = "Handling GET all books";
+        return new HttpResponse.Builder()
+                .statusCode(200)
+                .body(responseString)
+                .build();
+    }
+}
+```
+### 2. Route and Start the Server:
+
+```cpp
+public class App {
+    public static void main(String[] args) throws IOException {
+        MiniServer x = new MiniServer();
+        x.route("/books", HttpMethod.GET, BookController::handleGetAll);
+        x.start();
+    }
+}
+```
+
+## Installation 🛠️
+
+Compile and run the project using your favorite IDE or via the command line.
+
+## Contributing 🤝
+
+Contributions are welcome! Feel free to open a PR or submit issues for any bugs or enhancements.
+
+## License 📄
+
+This project is open-source and available under the MIT License.
